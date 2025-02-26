@@ -174,8 +174,8 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
 
 /**
@@ -219,8 +219,15 @@ function fromJSON(/* proto, json */) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+
+function sortCitiesArray(arr) {
+  const sortedArr = arr.sort((a, b) => {
+    const countryComparison = a.country.localeCompare(b.country);
+    return countryComparison !== 0
+      ? countryComparison
+      : a.city.localeCompare(b.city);
+  });
+  return sortedArr;
 }
 
 /**
